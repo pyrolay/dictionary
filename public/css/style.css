@@ -1,0 +1,166 @@
+/* Serif, sans serif, monospace */
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 2rem;
+    box-sizing: border-box;
+}
+
+body {
+    transition: 0.4s;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.6rem;
+    color: #292929;
+}
+
+.navbar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search__bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    background-color: #f4f4f4;
+}
+
+.search__bar input {
+    width: 100%;
+    margin-right: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    color: #2d2d2d;
+    background-color: #f4f4f4;
+}
+
+.search__bar input::placeholder {
+    color: #d5d5d5;
+}
+
+.search__bar input:focus-visible {
+    outline: none;
+}
+
+.search__button {
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search__button i {
+    font-size: 1.1rem;
+    color: #a341ee;
+}
+
+.search__button:hover {
+    background-color: #d4b7eb;
+}
+
+.phonetics__section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phonetics__section h2 {
+    font-size: 2rem;
+}
+
+.phonetics__section span {
+    color: #a341ee;
+    font-size: 1.2rem;
+}
+
+.listen__button {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 100%;
+    border: none;
+    background-color: #e9cffc;
+    color: #a341ee;
+}
+
+.listen__button i {
+    font-size: 1.2rem;
+}
+
+.synonyms__section .synonyms {
+    margin: 8px 0;
+}
+
+.synonyms__section .synonyms__list {
+    color: #a341ee;
+    font-weight: bold;
+}
+
+.speech__section {
+    display: flex;
+    align-items: center;
+    margin: 1.2rem 0;
+}
+
+.speech__section span {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.speech__section .line {
+    width: 100%;
+    height: 1px;
+    margin-left: 10px;
+    background: #eaeaea;
+}
+
+.speech__meaning {
+    color: #7a7a7a;
+    border-bottom: 1px #eaeaea solid;
+    padding-bottom: 1.2rem;
+}
+
+.speech__meaning ul {
+    margin-top: 8px;
+    margin-left: 16px;
+}
+
+.speech__meaning li {
+    color: #a341ee;
+}
+
+.speech__meaning li p {
+    color: black;
+    display: inline-block;
+}
+
+.speech__meaning .meaning__example {
+    color: #757575;
+}
+
+.source__section {
+    margin: 1rem 0;
+    color: #7a7a7a;
+}
+
+.source__section a {
+    display: flex;
+    align-items: center;
+}
+
+.source__section img {
+    margin-left: 4px;
+}

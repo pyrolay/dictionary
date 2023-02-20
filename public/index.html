@@ -4,10 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Dictionary</title>
 </head>
 <body>
+
+    <header class="navbar__header">
+        <div>
+            <img src="../assets/logo.afbe15e827b060eab1c775e3afad2b73.svg" alt="logo">
+        </div>
+        <div>
+            <div>
+                <select name="" id="">
+                    <option value="">Serif</option>
+                    <option value="">Sans-Serif</option>
+                    <option value="">Monospace</option>
+                </select>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+    <section class="search__bar">
+        <input type="text" placeholder="Search for any word...">
+        <button class="search__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </section>
+    <section class="main__section">
+        <section class="word__section">
+            <div class="phonetics__section">
+                <div>
+                    <h2>Word</h2>
+                    <span class="word__">lecture</span>
+                </div>
+                <div>
+                    <button class="listen__button">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="synonyms__section">
+                <p class="synonyms">synonyms</p>
+                <p class="synonyms__list">Lorem ipsum dolor sit amet consectetur </p>
+            </div>
+        </section>
+        <section class="meanings__section">
+            <div>
+                <div class="speech__section">
+                    <span>noun</span>
+                    <div class="line"></div>
+                </div>
+                <div class="speech__meaning">
+                    <p>Meaning</p>
+                    <ul>
+                        <li>
+                            <p>lorem</p>
+                        </li>
+                        <li>
+                            <p>lorem</p>
+                            <p class="meaning__example">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus soluta vitae illum numquam accusantium expedita?</p>
+                        </li>
+                        <li>
+                            <p>lorem</p>
+                            <p class="meaning__example">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, eius.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="source__section">
+            <p>Source</p>
+            <a href="">link <img src="../assets/" alt=""></a>
+        </section>
+    </section>
+
     <script src="js/script.js"></script>
 </body>
 </html>
