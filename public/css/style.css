@@ -12,7 +12,8 @@ body {
     max-width: 100%;
     margin: 0 auto;
     padding: 1.6rem;
-    color: #292929;
+    color: #303030;
+    background-color: #f7f7f7;
 }
 
 .navbar__header {
@@ -26,9 +27,9 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 1rem 0;
-    padding: 0.9rem 1rem;
+    padding: 0.2rem 0.8rem;
     border-radius: 16px;
-    background-color: #f4f4f4;
+    background-color: #ebebeb;
 }
 
 .search__bar input {
@@ -37,12 +38,12 @@ body {
     font-size: 1rem;
     font-weight: bold;
     border: none;
-    color: #2d2d2d;
-    background-color: #f4f4f4;
+    color: #303030;
+    background-color: #ebebeb;
 }
 
 .search__bar input::placeholder {
-    color: #d5d5d5;
+    color: #9c9c9c;
 }
 
 .search__bar input:focus-visible {
@@ -100,19 +101,10 @@ body {
     font-size: 1.2rem;
 }
 
-.synonyms__section .synonyms {
-    margin: 8px 0;
-}
-
-.synonyms__section .synonyms__list {
-    color: #a341ee;
-    font-weight: bold;
-}
-
 .speech__section {
     display: flex;
     align-items: center;
-    margin: 1.2rem 0;
+    margin: 1rem 0;
 }
 
 .speech__section span {
@@ -129,8 +121,7 @@ body {
 
 .speech__meaning {
     color: #7a7a7a;
-    border-bottom: 1px #eaeaea solid;
-    padding-bottom: 1.2rem;
+    padding-bottom: 1rem;
 }
 
 .speech__meaning ul {
@@ -144,16 +135,27 @@ body {
 
 .speech__meaning li p {
     color: black;
-    display: inline-block;
+    display: flex;
 }
 
 .speech__meaning .meaning__example {
     color: #757575;
 }
 
+.synonyms__section {
+    color: #7a7a7a;
+}
+
+.synonyms__section .synonyms__list {
+    color: #a341ee;
+    font-weight: bold;
+}
+
 .source__section {
     margin: 1rem 0;
     color: #7a7a7a;
+    padding-top: 1rem;
+    border-top: 1px #eaeaea solid;
 }
 
 .source__section a {
@@ -163,4 +165,95 @@ body {
 
 .source__section img {
     margin-left: 4px;
+}
+
+.hide {
+    display: none;
+}
+
+
+/* Spinner */
+
+.sampleContainer {
+    height: 50px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: height 0.2s ease;
+}
+
+.sampleContainer.hide {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.loader { 
+    position: relative; 
+    width: calc(12px * 3 + 8px);
+    height: 8px; 
+    margin: 12px auto; 
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: calc(8px * 0.5);
+    background: #ccc;
+    position: absolute;
+}
+
+.dot_1 {
+    animation: animateDot1 1.5s linear infinite;
+    left: 12px;
+    background: #e579b8; 
+}
+
+.dot_2 {
+    animation: animateDot2 1.5s linear infinite;
+    animation-delay: calc(1.5s / 3);
+    left: calc(12px * 2);
+}
+
+.dot_3 {
+    animation: animateDot3 1.5s linear infinite;
+    left: 12px;
+}
+
+.dot_4 {
+    animation: animateDot4 1.5s linear infinite;
+    animation-delay: calc(1.5s / 3);
+    left: calc(12px * 2);
+}
+
+@keyframes animateDot1 {
+    0%{ transform: rotate(0deg) translateX(-12px); }
+    25% { transform: rotate(180deg) translateX(-12px); }
+    75% { transform: rotate(180deg) translateX(-12px); }
+    100% { transform: rotate(360deg) translateX(-12px); }
+}
+
+@keyframes animateDot2 {
+    0%{ transform: rotate(-0deg) translateX(-12px); }
+    25% { transform: rotate(-180deg) translateX(-12px); }
+    75% { transform: rotate(-180deg) translateX(-12px); }
+    100% { transform: rotate(-360deg) translateX(-12px); }
+}
+
+@keyframes animateDot3 {
+    0%{ transform: rotate(0deg) translateX(12px); }
+    25% { transform: rotate(180deg) translateX(12px); }
+    75% { transform: rotate(180deg) translateX(12px); }
+    100% { transform: rotate(360deg) translateX(12px); }
+}
+
+@keyframes animateDot4 {
+    0%{ transform: rotate(-0deg) translateX(12px); }
+    25% { transform: rotate(-180deg) translateX(12px); }
+    75% { transform: rotate(-180deg) translateX(12px); }
+    100% { transform: rotate(-360deg) translateX(12px); }
 }
