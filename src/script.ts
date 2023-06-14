@@ -11,6 +11,7 @@ const $word = $(".word") as HTMLElement
 const $wordPhonetic = $(".word__phonetic") as HTMLElement
 const $meaningSection = $(".meanings__section") as HTMLElement
 const $listenButton = $(".listen__button") as HTMLElement
+const $audioIcon = $(".audio__icon") as HTMLElement
 const $urlLink = $(".url__link") as HTMLLinkElement
 
 let audio: HTMLAudioElement
@@ -53,7 +54,15 @@ const getWord = async (search: string): Promise<IWordAPI> => {
 
 // DOM
 
-const wordSound = () => audio.play()
+const wordSound = () => {
+    audio.play()
+    $audioIcon.classList.remove("fa-play")
+    $audioIcon.classList.add("fa-pause")
+    audio.addEventListener('ended', () => {
+        $audioIcon.classList.remove("fa-pause")
+        $audioIcon.classList.add("fa-play")
+    })
+}
 
 const setWordAndPhonetic = (word: string, phonetics: IWordAPIPhonetic[]) => {
     $word.innerText = word
@@ -118,7 +127,6 @@ const setSource = (source: Array<string>) => {
 }
 
 const useWordData = (wordData: IWordAPI) => {
-    console.log(wordData)
     const word = wordData.word
     const phonetics = wordData.phonetics
     const source = wordData.sourceUrls
@@ -153,12 +161,8 @@ window.addEventListener("load", () => {
 
 
 
-
-
-
-// Falta:
-// Source
-// Catch para error al buscar y palabra no encontrada
+// Tasks:
+// Errores - error al cargar y texto de no se encontraron resultados
 // Cambio de font
 // Cambio de tema
 // Loading

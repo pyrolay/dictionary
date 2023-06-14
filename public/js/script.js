@@ -16,6 +16,7 @@ const $word = $(".word");
 const $wordPhonetic = $(".word__phonetic");
 const $meaningSection = $(".meanings__section");
 const $listenButton = $(".listen__button");
+const $audioIcon = $(".audio__icon");
 const $urlLink = $(".url__link");
 let audio;
 const getWord = (search) => __awaiter(void 0, void 0, void 0, function* () {
@@ -23,7 +24,15 @@ const getWord = (search) => __awaiter(void 0, void 0, void 0, function* () {
     const wordData = yield res.json();
     return wordData[0];
 });
-const wordSound = () => audio.play();
+const wordSound = () => {
+    audio.play();
+    $audioIcon.classList.remove("fa-play");
+    $audioIcon.classList.add("fa-pause");
+    audio.addEventListener('ended', () => {
+        $audioIcon.classList.remove("fa-pause");
+        $audioIcon.classList.add("fa-play");
+    });
+};
 const setWordAndPhonetic = (word, phonetics) => {
     $word.innerText = word;
     for (const phonetic of phonetics) {
@@ -81,7 +90,6 @@ const setSource = (source) => {
     $urlLink.textContent = source[0];
 };
 const useWordData = (wordData) => {
-    console.log(wordData);
     const word = wordData.word;
     const phonetics = wordData.phonetics;
     const source = wordData.sourceUrls;
