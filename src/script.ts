@@ -11,6 +11,7 @@ const $word = $(".word") as HTMLElement
 const $wordPhonetic = $(".word__phonetic") as HTMLElement
 const $meaningSection = $(".meanings__section") as HTMLElement
 const $listenButton = $(".listen__button") as HTMLElement
+const $urlLink = $(".url__link") as HTMLLinkElement
 
 let audio: HTMLAudioElement
 
@@ -111,12 +112,19 @@ const setMeanings = (meanings: Array<IWordAPIMeaning>) => {
     }
 }
 
+const setSource = (source: Array<string>) => {
+    $urlLink.href = source[0]
+    $urlLink.textContent = source[0]
+}
+
 const useWordData = (wordData: IWordAPI) => {
     console.log(wordData)
     const word = wordData.word
-    const phonetics  = wordData.phonetics
+    const phonetics = wordData.phonetics
+    const source = wordData.sourceUrls
     setWordAndPhonetic(word, phonetics.length > 0 ? phonetics : [])
     wordData.meanings && setMeanings(wordData.meanings)
+    source.length > 0 && setSource(source)
 }
 
 // Events

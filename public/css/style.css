@@ -161,10 +161,8 @@ body {
 .source__section a {
     display: flex;
     align-items: center;
-}
-
-.source__section img {
-    margin-left: 4px;
+    color: #525252;
+    word-break: break-all;
 }
 
 .hide {
@@ -174,7 +172,7 @@ body {
 
 /* Spinner */
 
-.sampleContainer {
+.spinner__container {
     height: 50px;
     margin-bottom: 1rem;
     display: flex;
@@ -184,7 +182,7 @@ body {
     transition: height 0.2s ease;
 }
 
-.sampleContainer.hide {
+.spinner__container.hide {
     height: 0;
     padding: 0;
     margin: 0;

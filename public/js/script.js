@@ -16,6 +16,7 @@ const $word = $(".word");
 const $wordPhonetic = $(".word__phonetic");
 const $meaningSection = $(".meanings__section");
 const $listenButton = $(".listen__button");
+const $urlLink = $(".url__link");
 let audio;
 const getWord = (search) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`);
@@ -75,12 +76,18 @@ const setMeanings = (meanings) => {
         }
     }
 };
+const setSource = (source) => {
+    $urlLink.href = source[0];
+    $urlLink.textContent = source[0];
+};
 const useWordData = (wordData) => {
     console.log(wordData);
     const word = wordData.word;
     const phonetics = wordData.phonetics;
+    const source = wordData.sourceUrls;
     setWordAndPhonetic(word, phonetics.length > 0 ? phonetics : []);
     wordData.meanings && setMeanings(wordData.meanings);
+    source.length > 0 && setSource(source);
 };
 $listenButton.addEventListener("click", () => wordSound());
 $searchButton.addEventListener("click", () => {
