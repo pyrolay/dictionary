@@ -13,6 +13,7 @@ const $meaningSection = $(".meanings__section") as HTMLElement
 const $listenButton = $(".listen__button") as HTMLElement
 const $audioIcon = $(".audio__icon") as HTMLElement
 const $urlLink = $(".url__link") as HTMLLinkElement
+const $loading = $(".spinner__container") as HTMLElement
 
 let audio: HTMLAudioElement
 
@@ -46,6 +47,7 @@ interface IWordAPI {
 // GET 
 
 const getWord = async (search: string): Promise<IWordAPI> => {
+    $loading.classList.remove("hide")
     const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`)
     const wordData = await res.json()
     return wordData[0]
@@ -141,14 +143,20 @@ $listenButton.addEventListener("click", () => wordSound())
 
 $searchButton.addEventListener("click", () => {
     if ($searchInput.value !== "") {
-        getWord($searchInput.value).then(wordData => useWordData(wordData))
+        getWord($searchInput.value).then(wordData => {
+            useWordData(wordData)
+            $loading.classList.add("hide")
+        }).catch(() => console.log("aaaa"))
         $searchInput.value = ""
     }
 })
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && $searchInput.value !== "") {
-        getWord($searchInput.value).then(wordData => useWordData(wordData))
+        getWord($searchInput.value).then(wordData => {
+            useWordData(wordData)
+            $loading.classList.add("hide")
+        }).catch(() => console.log("aaaa"))
         $searchInput.value = ""
     }
 })
@@ -156,7 +164,10 @@ document.addEventListener("keydown", (e) => {
 // Window events
 
 window.addEventListener("load", () => {
-    getWord("home").then(wordData => useWordData(wordData))
+    getWord("home").then(wordData => {
+        useWordData(wordData)
+        $loading.classList.add("hide")
+    }).catch(() => console.log("aaaa"))
 })
 
 
@@ -164,5 +175,4 @@ window.addEventListener("load", () => {
 // Tasks:
 // Errores - error al cargar y texto de no se encontraron resultados
 // Cambio de font
-// Cambio de tema
 // Loading

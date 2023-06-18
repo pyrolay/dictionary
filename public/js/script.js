@@ -18,8 +18,10 @@ const $meaningSection = $(".meanings__section");
 const $listenButton = $(".listen__button");
 const $audioIcon = $(".audio__icon");
 const $urlLink = $(".url__link");
+const $loading = $(".spinner__container");
 let audio;
 const getWord = (search) => __awaiter(void 0, void 0, void 0, function* () {
+    $loading.classList.remove("hide");
     const res = yield fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`);
     const wordData = yield res.json();
     return wordData[0];
@@ -100,16 +102,25 @@ const useWordData = (wordData) => {
 $listenButton.addEventListener("click", () => wordSound());
 $searchButton.addEventListener("click", () => {
     if ($searchInput.value !== "") {
-        getWord($searchInput.value).then(wordData => useWordData(wordData));
+        getWord($searchInput.value).then(wordData => {
+            useWordData(wordData);
+            $loading.classList.add("hide");
+        }).catch(() => console.log("aaaa"));
         $searchInput.value = "";
     }
 });
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && $searchInput.value !== "") {
-        getWord($searchInput.value).then(wordData => useWordData(wordData));
+        getWord($searchInput.value).then(wordData => {
+            useWordData(wordData);
+            $loading.classList.add("hide");
+        }).catch(() => console.log("aaaa"));
         $searchInput.value = "";
     }
 });
 window.addEventListener("load", () => {
-    getWord("home").then(wordData => useWordData(wordData));
+    getWord("home").then(wordData => {
+        useWordData(wordData);
+        $loading.classList.add("hide");
+    }).catch(() => console.log("aaaa"));
 });
