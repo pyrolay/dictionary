@@ -14,18 +14,15 @@
 <body>
 
     <header class="navbar__header">
-        <div>
+        <div class="icon__container">
             <img src="../assets/logo.afbe15e827b060eab1c775e3afad2b73.svg" alt="logo">
         </div>
-        <div>
-            <div>
-                <select name="" id="">
-                    <option value="">Serif</option>
-                    <option value="">Sans-Serif</option>
-                    <option value="">Monospace</option>
-                </select>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
+        <div class="select__container">
+            <select class="font__select">
+              <option value="1">Serif</option>
+              <option value="2">Sans Serif</option>
+              <option value="3">Mono</option>
+            </select>
         </div>
     </header>
     <section class="search__bar">
@@ -42,7 +39,7 @@
             <span class="dot dot_4"></span>
         </div>
     </div>
-    <section class="main__section">
+    <section class="main__section hide">
         <section class="word__section">
             <div class="phonetics__section">
                 <div>
@@ -62,6 +59,9 @@
             <p>Source</p>
             <a href="" class="url__link" target="_blank"></a>
         </section>
+    </section>
+    <section class="error__container hide">
+        <p class="error__message"></p>
     </section>
 
     <script src="js/script.js"></script>

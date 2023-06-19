@@ -10,6 +10,7 @@
 body {
     transition: 0.4s;
     max-width: 100%;
+    min-height: 90vh;
     margin: 0 auto;
     padding: 1.6rem;
     color: #303030;
@@ -22,11 +23,30 @@ body {
     align-items: center;
 }
 
+.select__container {
+    width: 40%;
+}
+
+.font__select {
+    position: relative;
+    display: flex;
+    width: 100%;
+    font-size: .9em;
+    border-radius: 8px;
+    border: 1px solid #acacac;
+    padding: 8px 8px;
+}
+
+.icon__container {
+    display: flex;
+    align-items: center;
+}
+
 .search__bar {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     padding: 0.2rem 0.8rem;
     border-radius: 16px;
     background-color: #ebebeb;

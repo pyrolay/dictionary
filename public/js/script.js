@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
+const $mainSection = $(".main__section");
 const $searchInput = $("input");
 const $searchButton = $(".search__button");
 const $word = $(".word");
@@ -19,13 +20,38 @@ const $listenButton = $(".listen__button");
 const $audioIcon = $(".audio__icon");
 const $urlLink = $(".url__link");
 const $loading = $(".spinner__container");
+const $errorContainer = $(".error__container");
+const $errorMessage = $(".error__message");
 let audio;
 const getWord = (search) => __awaiter(void 0, void 0, void 0, function* () {
     $loading.classList.remove("hide");
     const res = yield fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`);
     const wordData = yield res.json();
-    return wordData[0];
+    if (wordData.message) {
+        return `${wordData.message}`;
+    }
+    if (wordData.length > 0) {
+        return wordData[0];
+    }
+    return "Error: Invalid response from the API";
 });
+const callAPI = (word) => {
+    getWord(word).then(wordData => {
+        if (typeof wordData === "string") {
+            $loading.classList.add("hide");
+            catchError(wordData);
+        }
+        else {
+            useWordData(wordData);
+            $loading.classList.add("hide");
+            $errorContainer.classList.add("hide");
+            $mainSection.classList.remove("hide");
+        }
+    }).catch(() => {
+        $loading.classList.add("hide");
+        catchError("There was an error, please try again.");
+    });
+};
 const wordSound = () => {
     audio.play();
     $audioIcon.classList.remove("fa-play");
@@ -99,28 +125,24 @@ const useWordData = (wordData) => {
     wordData.meanings && setMeanings(wordData.meanings);
     source.length > 0 && setSource(source);
 };
+const catchError = (error) => {
+    $mainSection.classList.add("hide");
+    $errorContainer.classList.remove("hide");
+    $errorMessage.innerText = error;
+};
 $listenButton.addEventListener("click", () => wordSound());
 $searchButton.addEventListener("click", () => {
     if ($searchInput.value !== "") {
-        getWord($searchInput.value).then(wordData => {
-            useWordData(wordData);
-            $loading.classList.add("hide");
-        }).catch(() => console.log("aaaa"));
+        callAPI($searchInput.value);
         $searchInput.value = "";
     }
 });
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && $searchInput.value !== "") {
-        getWord($searchInput.value).then(wordData => {
-            useWordData(wordData);
-            $loading.classList.add("hide");
-        }).catch(() => console.log("aaaa"));
+        callAPI($searchInput.value);
         $searchInput.value = "";
     }
 });
 window.addEventListener("load", () => {
-    getWord("home").then(wordData => {
-        useWordData(wordData);
-        $loading.classList.add("hide");
-    }).catch(() => console.log("aaaa"));
+    callAPI("home");
 });
