@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 const $mainSection = $(".main__section");
+const $fontSelect = $(".font__select");
 const $searchInput = $("input");
 const $searchButton = $(".search__button");
 const $word = $(".word");
@@ -51,6 +52,10 @@ const callAPI = (word) => {
         $loading.classList.add("hide");
         catchError("There was an error, please try again.");
     });
+};
+const getFont = () => {
+    const $body = $("body");
+    $body.style.fontFamily = $fontSelect.value;
 };
 const wordSound = () => {
     audio.play();
@@ -136,6 +141,9 @@ $searchButton.addEventListener("click", () => {
         callAPI($searchInput.value);
         $searchInput.value = "";
     }
+});
+$fontSelect.addEventListener("change", () => {
+    getFont();
 });
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && $searchInput.value !== "") {
