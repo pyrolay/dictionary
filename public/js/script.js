@@ -10,8 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
+const $body = $("body");
 const $mainSection = $(".main__section");
 const $fontSelect = $(".font__select");
+const $themeSwitcher = $(".theme__button");
 const $searchInput = $("input");
 const $searchButton = $(".search__button");
 const $word = $(".word");
@@ -54,7 +56,6 @@ const callAPI = (word) => {
     });
 };
 const getFont = () => {
-    const $body = $("body");
     $body.style.fontFamily = $fontSelect.value;
 };
 const wordSound = () => {
@@ -142,8 +143,9 @@ $searchButton.addEventListener("click", () => {
         $searchInput.value = "";
     }
 });
-$fontSelect.addEventListener("change", () => {
-    getFont();
+$fontSelect.addEventListener("change", () => getFont());
+$themeSwitcher.addEventListener("click", () => {
+    $body.classList.toggle("active");
 });
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && $searchInput.value !== "") {

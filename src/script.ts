@@ -6,8 +6,10 @@ const $$ = (selector: string) => document.querySelectorAll(selector)
 
 // Variables
 
+const $body = $("body") as HTMLElement
 const $mainSection = $(".main__section") as HTMLElement
 const $fontSelect = $(".font__select") as HTMLSelectElement
+const $themeSwitcher = $(".theme__button") as HTMLElement
 const $searchInput = $("input") as HTMLInputElement
 const $searchButton = $(".search__button") as HTMLElement
 const $word = $(".word") as HTMLElement
@@ -89,7 +91,6 @@ const callAPI = (word: string) => {
 // DOM
 
 const getFont = () => {
-    const $body = $("body") as HTMLElement
     $body.style.fontFamily = $fontSelect.value
 }
 
@@ -192,8 +193,10 @@ $searchButton.addEventListener("click", () => {
     }
 })
 
-$fontSelect.addEventListener("change", () => {
-    getFont()
+$fontSelect.addEventListener("change", () => getFont())
+
+$themeSwitcher.addEventListener("click", () => {
+    $body.classList.toggle("active")
 })
 
 document.addEventListener("keydown", (e) => {
