@@ -24,6 +24,8 @@ const $errorMessage = $(".error__message") as HTMLParagraphElement
 
 let audio: HTMLAudioElement
 
+let currentTheme = localStorage.getItem("theme")
+
 
 // Interfaces
 
@@ -87,6 +89,13 @@ const callAPI = (word: string) => {
     })
 }
 
+const setCurrentTheme = (theme: string) => localStorage.setItem("theme", theme)
+const getCurrentTheme = () => {
+    if (currentTheme === "light") {
+        $body.classList.remove("active")
+    }
+    else $body.classList.add("active")
+}
 
 // DOM
 
@@ -197,6 +206,10 @@ $fontSelect.addEventListener("change", () => getFont())
 
 $themeSwitcher.addEventListener("click", () => {
     $body.classList.toggle("active")
+    if (currentTheme === "light") {
+        setCurrentTheme("dark")
+    }
+    else setCurrentTheme("light")
 })
 
 document.addEventListener("keydown", (e) => {
@@ -207,6 +220,11 @@ document.addEventListener("keydown", (e) => {
 })
 
 window.addEventListener("load", () => {
+    if (!currentTheme) {
+        setCurrentTheme("light")
+        currentTheme = "light"
+    }
+    getCurrentTheme()
     callAPI("home")
 })
 

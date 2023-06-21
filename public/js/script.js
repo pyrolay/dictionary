@@ -26,6 +26,7 @@ const $loading = $(".spinner__container");
 const $errorContainer = $(".error__container");
 const $errorMessage = $(".error__message");
 let audio;
+let currentTheme = localStorage.getItem("theme");
 const getWord = (search) => __awaiter(void 0, void 0, void 0, function* () {
     $loading.classList.remove("hide");
     const res = yield fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`);
@@ -54,6 +55,14 @@ const callAPI = (word) => {
         $loading.classList.add("hide");
         catchError("There was an error, please try again.");
     });
+};
+const setCurrentTheme = (theme) => localStorage.setItem("theme", theme);
+const getCurrentTheme = () => {
+    if (currentTheme === "light") {
+        $body.classList.remove("active");
+    }
+    else
+        $body.classList.add("active");
 };
 const getFont = () => {
     $body.style.fontFamily = $fontSelect.value;
@@ -146,6 +155,11 @@ $searchButton.addEventListener("click", () => {
 $fontSelect.addEventListener("change", () => getFont());
 $themeSwitcher.addEventListener("click", () => {
     $body.classList.toggle("active");
+    if (currentTheme === "light") {
+        setCurrentTheme("dark");
+    }
+    else
+        setCurrentTheme("light");
 });
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && $searchInput.value !== "") {
@@ -154,5 +168,10 @@ document.addEventListener("keydown", (e) => {
     }
 });
 window.addEventListener("load", () => {
+    if (!currentTheme) {
+        setCurrentTheme("light");
+        currentTheme = "light";
+    }
+    getCurrentTheme();
     callAPI("home");
 });
