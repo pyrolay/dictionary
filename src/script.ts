@@ -227,8 +227,3 @@ window.addEventListener("load", () => {
     getCurrentTheme()
     callAPI("home")
 })
-
-
-
-// Tasks:
-// Cambio de font
